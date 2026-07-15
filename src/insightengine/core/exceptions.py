@@ -58,6 +58,18 @@ class UnknownVariableError(CodebookError):
     """
 
 
+class InvalidQuestionDefinitionError(CodebookError):
+    """Raised when a single :class:`~insightengine.core.codebook.Question`
+    is structurally invalid on its own terms — e.g. a categorical question
+    with zero categories, duplicate category codes within one question, or
+    a ranking question whose rank depth exceeds its item count. Distinct
+    from :class:`DuplicateQuestionIdError`/:class:`CircularDependencyError`,
+    which are properties of a *collection* of questions (the
+    :class:`~insightengine.core.codebook.Codebook`), not of one question
+    in isolation. (Phase 2)
+    """
+
+
 class DataBackendError(InsightEngineError):
     """Base class for errors from the Data Engine. (Phase 3)"""
 
