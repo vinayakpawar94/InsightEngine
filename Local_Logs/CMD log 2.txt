@@ -1,0 +1,65 @@
+Proceed with Phase 2 (Core Domain Models) I give you the go-ahead.
+
+
+Architected immutable domain models with validation and dependency resolution
+Architected immutable domain models with validation and dependency resolution
+Building the Question hierarchy and Codebook now. One design deviation from the original class diagram, explained before I write it: that diagram gave Codebook a separate variables: dict[str, Variable] alongside questions. I'm deferring Variable (the actual physical data-column concept — e.g., what a grid or multi-response question expands into) to whichever phase actually implements that expansion, since we don't know its shape yet without the Cleaning Engine's grid/multi-expansion logic (Phase 7). Modeling it now would mean guessing a schema I'd likely have to redo. Phase 2 models only the questionnaire-design-time concept: Question hierarchy + Codebook.
+
+
+Confirm working directory structure before Phase 2
+Confirm working directory structure before Phase 2
+First, adding the two new leaf exceptions this phase needs (extending, not restructuring, the Phase 1 hierarchy — anticipated in its own docstring):
+
+
+Add two new CodebookError leaves needed by Phase 2's Question/Codebook validation
+Add two new CodebookError leaves needed by Phase 2's Question/Codebook validation
+Now the core domain model itself:
+
+Created a file, edited a file
+Created a file, edited a file
+
+Architected comprehensive unit tests for validation scenarios
+Architected comprehensive unit tests for validation scenarios
+
+Devised automated script to systematically replace super calls
+Devised automated script to systematically replace super calls
+All 7 fixed. Re-running the test suite.
+
+
+Re-run codebook tests after the super() fix
+Re-run codebook tests after the super() fix
+All 52 pass. Now full suite + mypy + coverage.
+
+
+Deliberated pragmatic code coverage strategy for abstract methods
+Deliberated pragmatic code coverage strategy for abstract methods
+That's the abstract method's unreachable body — can't be hit since Question can't be instantiated and every concrete subclass overrides it. Marking it explicitly rather than leaving a silent coverage gap:
+
+
+Edited a file, ran a command
+Edited a file, ran a command
+100% on the new module, mypy clean. Packaging Phase 2 for delivery.
+
+
+Ran a command, read a file
+Ran a command, read a file
+Phase 2 — Core Domain Models: complete
+What was implemented: Category, the seven-member Question hierarchy (SingleQuestion, MultiQuestion, NumericQuestion, TextQuestion, RankingQuestion, GridQuestion, DerivedVariable), and Codebook — all in core/codebook.py.
+
+Scope decision, stated before I coded it: Variable (the physical-data-column concept from the original class diagram) is deferred to whichever phase actually implements grid/multi expansion (Phase 7), not guessed at here.
+
+A real bug I hit and want to be transparent about, not bury in a diff: the first version of every subclass's __post_init__ used zero-arg super().__post_init__(), which is broken with frozen=True, slots=True dataclass inheritance — @dataclass(slots=True) rebuilds the class via type() after the class body runs, so the __class__ closure cell zero-arg super() relies on still points at the pre-slots class object, not the one self is actually an instance of. It fails with a TypeError at the first instantiation of any subclass, not silently. I caught it because I ran the full test suite before declaring this done, not because I anticipated it — fixed by using explicit super(ClassName, self).__post_init__() in every subclass, verified with an isolated repro before touching all seven. Worth knowing if you write more slotted dataclasses with inheritance later in this codebase.
+
+Design decisions:
+
+All domain objects frozen + kw_only=True (sidesteps the classic dataclass-inheritance "non-default argument follows default" ordering problem entirely) + slots=True (memory-conscious, given large questionnaires may have thousands of category/row objects).
+Grid rows are flattened into the Codebook's flat id namespace alongside the grid itself — a row like Q2_1 is independently addressable, since it's a real data column, not hidden metadata.
+Derived-variable dependency ordering uses Kahn's algorithm with alphabetical tie-breaking for determinism; validated against a genuine diamond-dependency case (not just a simple chain) to make sure the cycle detector doesn't false-positive on legitimate shared dependencies.
+Two new CodebookError leaves added to Phase 1's exception module (InvalidQuestionDefinitionError alongside the already-planned UnknownVariableError) — an anticipated extension per that module's own docstring, not a restructuring.
+Tests: 90 passed, 1 skipped (same pre-existing root-permission skip from Phase 1). 52 new tests cover every validation branch per class plus five dedicated Codebook-level tests: duplicate ids (top-level and grid-row-vs-top-level), unknown dependency references, circular dependency (both 2-node and 3-node cycles), the 3-deep chain acceptance criterion from the roadmap, and the diamond-dependency false-positive check.
+
+Verification: unzip, then pip install -e ".[dev]", pytest -v, mypy src/insightengine --strict. 100% coverage on the new module; 99% overall (same pre-existing config.py gap from Phase 1).
+
+What Phase 3 should be: Data Engine (pandas backend only, per the roadmap) — depends on nothing from Phase 2 except general familiarity with the exception hierarchy; the DataBackend protocol itself doesn't need to know about Codebook yet.
+
+Waiting for your review before Phase 3.
