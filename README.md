@@ -14,20 +14,18 @@ components.
 
 ## Status
 
-**Phase 1 (Foundation) complete,** under the `insightengine` name. See the
-project's implementation roadmap for what's built and what's next.
-Nothing in this repository processes survey data yet — this phase is the
-project skeleton, configuration system, logging, exception hierarchy,
-and plugin registry that every later phase depends on.
+**Phases 1–3 complete** (Foundation, Core Domain Models, Data Engine —
+pandas backend only). See the project's implementation roadmap for what's
+built and what's next.
 
 ## Requirements
 
 - Python 3.13+
-- This phase's automated tests were run and verified against Python
+- This project's automated tests were run and verified against Python
   3.12.3, since 3.13 was not available in the build environment. Nothing
-  in this phase uses a 3.13-only language feature, but re-running the
-  test suite on an actual 3.13 interpreter before relying on this phase
-  is recommended, not assumed.
+  in the codebase uses a 3.13-only language feature, but re-running the
+  test suite on an actual 3.13 interpreter before relying on any phase is
+  recommended, not assumed.
 
 ## Development setup
 
@@ -41,7 +39,13 @@ mypy src/insightengine --strict
 
 ```
 src/insightengine/
-├── core/               # exceptions, enums, config, logging — the dependency floor
+├── core/               # exceptions, enums, config, logging, Codebook/Question domain model
+├── data/               # backend-agnostic Data Engine
+│   ├── base.py          # RawTable, DataHandle/DataBackend protocols
+│   ├── csv_loader.py     # CSV -> RawTable (no type coercion — see module docstring)
+│   ├── loader.py          # format sniffing + top-level load_file()
+│   └── backends/
+│       └── pandas_backend.py   # the only concrete DataBackend so far
 └── plugins/            # generic entry_points-based plugin registry
 tests/unit/              # unit tests, one file per source module
 ```

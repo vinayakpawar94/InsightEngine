@@ -1,0 +1,109 @@
+I reviewed and confirmed to freeze Phase 2 and proceed with the Phase 3 implementation.
+
+
+Architected data engine with pandas backend and protocol-driven design
+Architected data engine with pandas backend and protocol-driven design
+Phase 3 — Data Engine (pandas backend only). Building it now.
+
+
+Edited a file, ran a command, created a file
+Edited a file, ran a command, created a file
+Now the base protocol module:
+
+
+Create the RawTable container and DataHandle/DataBackend protocols
+Create the RawTable container and DataHandle/DataBackend protocols
+Now the CSV loader:
+
+
+Create the CSV format loader
+Create the CSV format loader
+Now format sniffing and the top-level loader:
+
+
+Create format sniffing and the top-level file loader
+Create format sniffing and the top-level file loader
+Now the pandas backend:
+
+
+Architected comprehensive test suite across multiple system layers
+Architected comprehensive test suite across multiple system layers
+Now CSV loader tests:
+
+
+Create unit tests for the CSV loader
+Create unit tests for the CSV loader
+Now loader (format sniffing + load_file) tests:
+
+
+Create unit tests for format sniffing and load_file
+Create unit tests for format sniffing and load_file
+Now the pandas backend tests:
+
+
+Create unit tests for the pandas backend implementation
+Create unit tests for the pandas backend implementation
+Now running the full suite:
+
+
+Architected helper function and reconciled pandas backend limitations
+Architected helper function and reconciled pandas backend limitations
+Now full verification: tests, mypy, coverage.
+
+
+Devised typed solution circumventing pandas type constraints
+Devised typed solution circumventing pandas type constraints
+pd.isna's stub overloads don't accept a bare object — rather than silencing mypy, switching to a narrower, fully-typed check that matches what actually happens today (pandas only produces float NaN, not pd.NaT/pd.NA, for the string/None columns our loaders currently produce):
+
+
+Edited a file, ran a command
+Edited a file, ran a command
+Clean. Now coverage:
+
+
+Engineered test case to trigger CSV parsing exception
+Engineered test case to trigger CSV parsing exception
+That reliably triggers csv.Error. Adding a test using csv.field_size_limit (restored afterward), plus a direct test of the _denormalize_missing helper for full branch coverage:
+
+
+Edited 2 files, ran a command
+Edited 2 files, ran a command
+100% on every Phase 3 module now; the only remaining gap is the same pre-existing Phase 1 root-permission skip. Final mypy check, then packaging.
+
+
+Deliberated on augmenting project dependencies and development tooling
+Deliberated on augmenting project dependencies and development tooling
+Need to add pandas as a runtime dependency in pyproject.toml — it's imported by real Phase 3 code now, not just installed ad hoc in this sandbox.
+
+
+Add pandas as a runtime dependency and pandas-stubs/mypy as dev dependencies
+Add pandas as a runtime dependency and pandas-stubs/mypy as dev dependencies
+Also updating the README's layout section to reflect the new package:
+
+
+Edited 2 files, viewed a file
+Edited 2 files, viewed a file
+Final full verification pass, then packaging.
+
+
+Ran 2 commands, read a file
+Ran 2 commands, read a file
+Phase 3 — Data Engine (pandas backend only): complete
+What was implemented: data/base.py (RawTable, DataHandle/DataBackend structural protocols), data/csv_loader.py, data/loader.py (format sniffing + load_file), data/backends/pandas_backend.py.
+
+A real bug I hit, not swept under the rug: the first version of PandasDataHandle silently corrupted missing values. RawTable/DataHandle promise None for a missing cell — that's what the CSV loader actually produces — but pandas silently converts None to float('nan') internally for object-dtype columns that mix strings and None. My first test run caught it ('NYC', nan, 'LA' instead of 'NYC', None, 'LA'). Fixed with a _denormalize_missing helper applied on every read path, deliberately scoped to the float-NaN case only — I did not add speculative handling for pd.NaT/pd.NA, since no loader in this codebase produces those dtypes yet, and untested handling for a case that can't occur is exactly the kind of code this project's rules forbid.
+
+Design decisions:
+
+DataHandle/DataBackend are Protocol, not ABC — structural typing so a test fake never needs to inherit from framework code. Proven directly: test_data_base.py and test_loader.py both exercise a pandas-free fake backend satisfying the same protocol pandas does.
+CSV loader does no type coercion — every value is str or None. Deciding a column is numeric without a Codebook to check against would mean inventing fragile heuristics; that decision belongs to whichever later phase wires the Data Engine to actual questionnaire metadata.
+Default CSV encoding is utf-8-sig, not utf-8 — chosen specifically because of the BOM/encoding pitfalls this exact project has already hit once this conversation, in a different system. Verified with a real BOM-prefixed fixture, not just asserted.
+sniff_format recognizes CSV/Excel/JSON/Parquet now (so the enum never needs a breaking change later), but load_file is explicit that only CSV is implemented — asking for Excel raises a clear UnsupportedFormatError, not a placeholder.
+Added pandas as a real pyproject.toml dependency (plus pandas-stubs/mypy as dev deps) — it was only ad hoc–installed in the sandbox before this point.
+Tests: 134 passed, 1 skipped (same pre-existing Phase 1 root-permission skip). 100% coverage on every Phase 3 module, including a deliberately-constructed csv.field_size_limit() test to exercise the csv.Error branch deterministically rather than guessing at a malformed-CSV byte sequence that may or may not trigger it. mypy --strict clean across all 15 source files.
+
+Verification: unzip, pip install -e ".[dev]", pytest -v, mypy src/insightengine --strict.
+
+What Phase 4 should be: Metadata Engine (native YAML codebook parser + validator), per the roadmap — depends on Phase 2's Codebook/Question hierarchy, not on Phase 3 at all; the two phases are independent of each other until a later integration point wires metadata and data together.
+
+Waiting for your review before Phase 4.

@@ -1,0 +1,63 @@
+2. Extract insightengine_phase2.zip
+
+Extract it to a temporary folder, for example:
+
+D:\Temp\insightengine_phase2
+3. Copy files
+
+Copy everything from the extracted Phase 2 folder into:
+
+D:\InsightEngine
+
+Replace existing files when prompted.
+
+This is expected because Phase 2 builds on Phase 1.
+
+4. Check what changed
+
+Run:
+
+git status
+
+You should see:
+
+Modified files
+New files (like core/codebook.py)
+New tests
+
+Nothing should be deleted unexpectedly.
+
+5. Verify locally
+
+Run exactly what Claude suggested:
+
+pip install -e ".[dev]"
+
+Then:
+
+pytest -v
+
+Then:
+
+mypy src/insightengine --strict
+
+If all of these pass, Phase 2 is technically sound.
+
+6. Review the code
+
+Before committing, spend a little time reviewing:
+
+src/insightengine/core/codebook.py
+The new tests
+Any changes to exceptions.py
+
+The goal is to understand the new public APIs.
+
+7. Commit Phase 2
+git add .
+git commit -m "Phase 2: Core Domain Model"
+8. Push
+git push
+9. Tag Phase 2
+git tag v0.2.0-phase2
+git push origin v0.2.0-phase2

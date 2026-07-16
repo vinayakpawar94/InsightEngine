@@ -84,6 +84,12 @@ class DataLoadError(DataBackendError):
     """
 
 
+class UnknownColumnError(DataBackendError):
+    """Raised when code asks a :class:`~insightengine.data.base.DataHandle`
+    for a column name it doesn't have. (Phase 3)
+    """
+
+
 class RuleEngineError(InsightEngineError):
     """Base class for errors from the Rule Engine. (Phase 5)"""
 
