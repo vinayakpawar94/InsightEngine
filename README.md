@@ -14,9 +14,9 @@ components.
 
 ## Status
 
-**Phases 1–3 complete** (Foundation, Core Domain Models, Data Engine —
-pandas backend only). See the project's implementation roadmap for what's
-built and what's next.
+**Phases 1–4 complete** (Foundation, Core Domain Models, Data Engine —
+pandas backend only, Metadata Engine — native YAML only). See the
+project's implementation roadmap for what's built and what's next.
 
 ## Requirements
 
@@ -46,6 +46,11 @@ src/insightengine/
 │   ├── loader.py          # format sniffing + top-level load_file()
 │   └── backends/
 │       └── pandas_backend.py   # the only concrete DataBackend so far
+├── metadata/            # Metadata Engine
+│   ├── base.py            # MetadataParser protocol
+│   ├── validators.py        # authoring-quality checks beyond Codebook's own invariants
+│   └── parsers/
+│       └── yaml_native.py     # native YAML <-> Codebook, the only parser so far
 └── plugins/            # generic entry_points-based plugin registry
 tests/unit/              # unit tests, one file per source module
 ```

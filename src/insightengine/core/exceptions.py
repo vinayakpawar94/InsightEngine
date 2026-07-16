@@ -70,6 +70,17 @@ class InvalidQuestionDefinitionError(CodebookError):
     """
 
 
+class MetadataParseError(CodebookError):
+    """Raised when a metadata source (a native YAML codebook file, in
+    Phase 4) is structurally invalid before it can even become a
+    :class:`~insightengine.core.codebook.Codebook` — a missing required
+    field, an unrecognized question ``type``, malformed YAML — or fails
+    an authoring-quality check that isn't a hard domain-model invariant
+    but is almost always a mistake, such as two categories in the same
+    question sharing an identical label under different codes. (Phase 4)
+    """
+
+
 class DataBackendError(InsightEngineError):
     """Base class for errors from the Data Engine. (Phase 3)"""
 

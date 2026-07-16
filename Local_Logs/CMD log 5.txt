@@ -1,0 +1,262 @@
+D:\Insightengine>pip install -e ".[dev]"
+Obtaining file:///D:/Insightengine
+  Installing build dependencies ... done
+  Checking if build backend supports build_editable ... done
+  Getting requirements to build editable ... done
+  Preparing editable metadata (pyproject.toml) ... done
+Requirement already satisfied: pydantic>=2.9 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from insightengine==0.1.0) (2.13.4)
+Requirement already satisfied: PyYAML>=6.0 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from insightengine==0.1.0) (6.0.3)
+Requirement already satisfied: pandas>=2.2 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from insightengine==0.1.0) (2.3.3)
+Requirement already satisfied: pytest>=8.0 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from insightengine==0.1.0) (9.1.1)
+Requirement already satisfied: pytest-cov>=5.0 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from insightengine==0.1.0) (7.1.0)
+Requirement already satisfied: mypy>=1.11 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from insightengine==0.1.0) (2.1.0)
+Collecting pandas-stubs>=2.2 (from insightengine==0.1.0)
+  Downloading pandas_stubs-3.0.3.260530-py3-none-any.whl.metadata (11 kB)
+Requirement already satisfied: types-PyYAML>=6.0 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from insightengine==0.1.0) (6.0.12.20260518)
+Requirement already satisfied: typing_extensions>=4.6.0 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from mypy>=1.11->insightengine==0.1.0) (4.15.0)
+Requirement already satisfied: mypy_extensions>=1.0.0 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from mypy>=1.11->insightengine==0.1.0) (1.1.0)
+Requirement already satisfied: pathspec>=1.0.0 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from mypy>=1.11->insightengine==0.1.0) (1.1.1)
+Requirement already satisfied: librt>=0.11.0 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from mypy>=1.11->insightengine==0.1.0) (0.12.0)
+Requirement already satisfied: ast-serialize<1.0.0,>=0.3.0 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from mypy>=1.11->insightengine==0.1.0) (0.5.0)
+Requirement already satisfied: numpy>=1.26.0 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from pandas>=2.2->insightengine==0.1.0) (2.5.0)
+Requirement already satisfied: python-dateutil>=2.8.2 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from pandas>=2.2->insightengine==0.1.0) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from pandas>=2.2->insightengine==0.1.0) (2026.2)
+Requirement already satisfied: tzdata>=2022.7 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from pandas>=2.2->insightengine==0.1.0) (2026.2)
+Requirement already satisfied: annotated-types>=0.6.0 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from pydantic>=2.9->insightengine==0.1.0) (0.7.0)
+Requirement already satisfied: pydantic-core==2.46.4 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from pydantic>=2.9->insightengine==0.1.0) (2.46.4)
+Requirement already satisfied: typing-inspection>=0.4.2 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from pydantic>=2.9->insightengine==0.1.0) (0.4.2)
+Requirement already satisfied: colorama>=0.4 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from pytest>=8.0->insightengine==0.1.0) (0.4.6)
+Requirement already satisfied: iniconfig>=1.0.1 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from pytest>=8.0->insightengine==0.1.0) (2.3.0)
+Requirement already satisfied: packaging>=22 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from pytest>=8.0->insightengine==0.1.0) (26.2)
+Requirement already satisfied: pluggy<2,>=1.5 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from pytest>=8.0->insightengine==0.1.0) (1.6.0)
+Requirement already satisfied: pygments>=2.7.2 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from pytest>=8.0->insightengine==0.1.0) (2.20.0)
+Requirement already satisfied: coverage>=7.10.6 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from coverage[toml]>=7.10.6->pytest-cov>=5.0->insightengine==0.1.0) (7.14.3)
+Requirement already satisfied: six>=1.5 in C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\Lib\site-packages (from python-dateutil>=2.8.2->pandas>=2.2->insightengine==0.1.0) (1.17.0)
+Downloading pandas_stubs-3.0.3.260530-py3-none-any.whl (173 kB)
+Building wheels for collected packages: insightengine
+  Building editable for insightengine (pyproject.toml) ... done
+  Created wheel for insightengine: filename=insightengine-0.1.0-0.editable-py3-none-any.whl size=2414 sha256=69306966fa16bc6f960fcea1b314be5ffa95c898be4263ac230cbda380ce2a01
+  Stored in directory: C:\Users\vinayak.pawar\AppData\Local\Temp\pip-ephem-wheel-cache-54d1sbjn\wheels\d1\46\da\cb5d871ac2e6f45493993f26a768a11ecd2d044edd06a8a459
+Successfully built insightengine
+Installing collected packages: pandas-stubs, insightengine
+  Attempting uninstall: insightengine
+    Found existing installation: insightengine 0.1.0
+    Uninstalling insightengine-0.1.0:
+      Successfully uninstalled insightengine-0.1.0
+Successfully installed insightengine-0.1.0 pandas-stubs-3.0.3.260530
+
+D:\Insightengine>pytest -v
+================================================= test session starts =================================================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\vinayak.pawar\AppData\Local\Programs\Python\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Insightengine
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.14.1, langsmith-0.9.4, asyncio-1.4.0, cov-7.1.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 135 items
+
+tests/unit/test_codebook.py::TestCategory::test_valid_category PASSED                                            [  0%]
+tests/unit/test_codebook.py::TestCategory::test_empty_label_raises PASSED                                        [  1%]
+tests/unit/test_codebook.py::TestCategory::test_category_is_frozen PASSED                                        [  2%]
+tests/unit/test_codebook.py::TestQuestionAbstractBase::test_cannot_instantiate_question_directly PASSED          [  2%]
+tests/unit/test_codebook.py::TestQuestionAbstractBase::test_empty_id_raises PASSED                               [  3%]
+tests/unit/test_codebook.py::TestQuestionAbstractBase::test_empty_label_raises PASSED                            [  4%]
+tests/unit/test_codebook.py::TestSingleQuestion::test_valid_construction PASSED                                  [  5%]
+tests/unit/test_codebook.py::TestSingleQuestion::test_empty_categories_raises PASSED                             [  5%]
+tests/unit/test_codebook.py::TestSingleQuestion::test_duplicate_category_codes_raise PASSED                      [  6%]
+tests/unit/test_codebook.py::TestSingleQuestion::test_required_flag PASSED                                       [  7%]
+tests/unit/test_codebook.py::TestMultiQuestion::test_valid_without_max_selections PASSED                         [  8%]
+tests/unit/test_codebook.py::TestMultiQuestion::test_valid_with_max_selections PASSED                            [  8%]
+tests/unit/test_codebook.py::TestMultiQuestion::test_empty_categories_raises PASSED                              [  9%]
+tests/unit/test_codebook.py::TestMultiQuestion::test_duplicate_category_codes_raise PASSED                       [ 10%]
+tests/unit/test_codebook.py::TestMultiQuestion::test_max_selections_below_one_raises PASSED                      [ 11%]
+tests/unit/test_codebook.py::TestMultiQuestion::test_max_selections_exceeding_category_count_raises PASSED       [ 11%]
+tests/unit/test_codebook.py::TestNumericQuestion::test_valid_unbounded PASSED                                    [ 12%]
+tests/unit/test_codebook.py::TestNumericQuestion::test_valid_bounded PASSED                                      [ 13%]
+tests/unit/test_codebook.py::TestNumericQuestion::test_min_greater_than_max_raises PASSED                        [ 14%]
+tests/unit/test_codebook.py::TestNumericQuestion::test_min_equal_to_max_is_allowed PASSED                        [ 14%]
+tests/unit/test_codebook.py::TestTextQuestion::test_valid_unbounded PASSED                                       [ 15%]
+tests/unit/test_codebook.py::TestTextQuestion::test_valid_bounded PASSED                                         [ 16%]
+tests/unit/test_codebook.py::TestTextQuestion::test_max_length_below_one_raises PASSED                           [ 17%]
+tests/unit/test_codebook.py::TestRankingQuestion::test_valid_construction PASSED                                 [ 17%]
+tests/unit/test_codebook.py::TestRankingQuestion::test_empty_items_raises PASSED                                 [ 18%]
+tests/unit/test_codebook.py::TestRankingQuestion::test_duplicate_item_codes_raise PASSED                         [ 19%]
+tests/unit/test_codebook.py::TestRankingQuestion::test_rank_count_zero_raises PASSED                             [ 20%]
+tests/unit/test_codebook.py::TestRankingQuestion::test_rank_count_exceeding_item_count_raises PASSED             [ 20%]
+tests/unit/test_codebook.py::TestGridQuestion::test_valid_construction PASSED                                    [ 21%]
+tests/unit/test_codebook.py::TestGridQuestion::test_empty_rows_raises PASSED                                     [ 22%]
+tests/unit/test_codebook.py::TestGridQuestion::test_empty_columns_raises PASSED                                  [ 22%]
+tests/unit/test_codebook.py::TestGridQuestion::test_duplicate_column_codes_raise PASSED                          [ 23%]
+tests/unit/test_codebook.py::TestGridQuestion::test_duplicate_row_ids_raise PASSED                               [ 24%]
+tests/unit/test_codebook.py::TestGridQuestion::test_nested_grid_row_raises PASSED                                [ 25%]
+tests/unit/test_codebook.py::TestDerivedVariable::test_valid_construction PASSED                                 [ 25%]
+tests/unit/test_codebook.py::TestDerivedVariable::test_valid_with_no_dependencies PASSED                         [ 26%]
+tests/unit/test_codebook.py::TestDerivedVariable::test_empty_expression_raises PASSED                            [ 27%]
+tests/unit/test_codebook.py::TestDerivedVariable::test_duplicate_dependency_raises PASSED                        [ 28%]
+tests/unit/test_codebook.py::TestDerivedVariable::test_self_dependency_raises PASSED                             [ 28%]
+tests/unit/test_codebook.py::TestCodebookBasics::test_construction_and_lookup PASSED                             [ 29%]
+tests/unit/test_codebook.py::TestCodebookBasics::test_get_unknown_question_raises PASSED                         [ 30%]
+tests/unit/test_codebook.py::TestCodebookBasics::test_duplicate_top_level_id_raises PASSED                       [ 31%]
+tests/unit/test_codebook.py::TestCodebookBasics::test_empty_codebook_is_valid PASSED                             [ 31%]
+tests/unit/test_codebook.py::TestCodebookGridFlattening::test_grid_rows_are_individually_addressable PASSED      [ 32%]
+tests/unit/test_codebook.py::TestCodebookGridFlattening::test_grid_row_id_colliding_with_another_top_level_question_raises PASSED [ 33%]
+tests/unit/test_codebook.py::TestCodebookDerivedVariables::test_unknown_dependency_raises_at_construction PASSED [ 34%]
+tests/unit/test_codebook.py::TestCodebookDerivedVariables::test_dependency_on_directly_collected_question_is_fine PASSED [ 34%]
+tests/unit/test_codebook.py::TestCodebookDerivedVariables::test_circular_dependency_raises_at_construction_not_lazily PASSED [ 35%]
+tests/unit/test_codebook.py::TestCodebookDerivedVariables::test_three_level_dependency_chain_computes_correct_order PASSED [ 36%]
+tests/unit/test_codebook.py::TestCodebookDerivedVariables::test_three_way_cycle_raises PASSED                    [ 37%]
+tests/unit/test_codebook.py::TestCodebookDerivedVariables::test_diamond_dependency_is_not_a_false_positive_cycle PASSED [ 37%]
+tests/unit/test_codebook.py::TestCodebookDerivedVariables::test_derived_variables_excludes_non_derived_questions PASSED [ 38%]
+tests/unit/test_config.py::TestLoadConfigSuccess::test_minimal_valid_config PASSED                               [ 39%]
+tests/unit/test_config.py::TestLoadConfigSuccess::test_full_config_with_logging_overrides PASSED                 [ 40%]
+tests/unit/test_config.py::TestLoadConfigSuccess::test_config_is_immutable PASSED                                [ 40%]
+tests/unit/test_config.py::TestLoadConfigFailures::test_missing_file_raises_invalid_settings_error PASSED        [ 41%]
+tests/unit/test_config.py::TestLoadConfigFailures::test_unreadable_file_raises_invalid_settings_error SKIPPED    [ 42%]
+tests/unit/test_config.py::TestLoadConfigFailures::test_malformed_yaml_raises_invalid_settings_error PASSED      [ 42%]
+tests/unit/test_config.py::TestLoadConfigFailures::test_non_mapping_top_level_raises_invalid_settings_error PASSED [ 43%]
+tests/unit/test_config.py::TestLoadConfigFailures::test_missing_required_field_raises_invalid_settings_error PASSED [ 44%]
+tests/unit/test_config.py::TestLoadConfigFailures::test_wrong_type_for_field_raises_invalid_settings_error PASSED [ 45%]
+tests/unit/test_csv_loader.py::TestLoadCsvSuccess::test_simple_file PASSED                                       [ 45%]
+tests/unit/test_csv_loader.py::TestLoadCsvSuccess::test_header_only_file_has_zero_rows PASSED                    [ 46%]
+tests/unit/test_csv_loader.py::TestLoadCsvSuccess::test_missing_trailing_field_becomes_none PASSED               [ 47%]
+tests/unit/test_csv_loader.py::TestLoadCsvSuccess::test_bom_prefixed_utf8_file_strips_bom_from_header PASSED     [ 48%]
+tests/unit/test_csv_loader.py::TestLoadCsvSuccess::test_values_are_all_strings_or_none_no_type_coercion PASSED   [ 48%]
+tests/unit/test_csv_loader.py::TestLoadCsvFailures::test_missing_file_raises PASSED                              [ 49%]
+tests/unit/test_csv_loader.py::TestLoadCsvFailures::test_empty_file_raises PASSED                                [ 50%]
+tests/unit/test_csv_loader.py::TestLoadCsvFailures::test_duplicate_header_raises PASSED                          [ 51%]
+tests/unit/test_csv_loader.py::TestLoadCsvFailures::test_wrong_encoding_raises_data_load_error PASSED            [ 51%]
+tests/unit/test_csv_loader.py::TestLoadCsvFailures::test_correct_alternate_encoding_succeeds PASSED              [ 52%]
+tests/unit/test_csv_loader.py::TestLoadCsvFailures::test_field_exceeding_csv_module_limit_raises_data_load_error PASSED [ 53%]
+tests/unit/test_data_base.py::TestRawTable::test_valid_table PASSED                                              [ 54%]
+tests/unit/test_data_base.py::TestRawTable::test_zero_row_table_is_valid PASSED                                  [ 54%]
+tests/unit/test_data_base.py::TestRawTable::test_zero_column_table_is_valid PASSED                               [ 55%]
+tests/unit/test_data_base.py::TestRawTable::test_negative_row_count_raises PASSED                                [ 56%]
+tests/unit/test_data_base.py::TestRawTable::test_mismatched_column_length_raises PASSED                          [ 57%]
+tests/unit/test_data_base.py::TestRawTable::test_is_frozen PASSED                                                [ 57%]
+tests/unit/test_data_base.py::TestProtocolsAreStructural::test_fake_data_handle_satisfies_protocol PASSED        [ 58%]
+tests/unit/test_data_base.py::TestProtocolsAreStructural::test_fake_backend_satisfies_protocol PASSED            [ 59%]
+tests/unit/test_data_base.py::TestProtocolsAreStructural::test_fake_backend_round_trips_a_raw_table PASSED       [ 60%]
+tests/unit/test_exceptions.py::test_every_base_class_derives_from_insightengine_error PASSED                     [ 60%]
+tests/unit/test_exceptions.py::test_every_leaf_derives_from_its_documented_base PASSED                           [ 61%]
+tests/unit/test_exceptions.py::test_insightengine_error_derives_from_exception_only PASSED                       [ 62%]
+tests/unit/test_exceptions.py::test_catching_insightengine_error_catches_every_public_exception PASSED           [ 62%]
+tests/unit/test_exceptions.py::test_exception_message_is_preserved PASSED                                        [ 63%]
+tests/unit/test_loader.py::TestSniffFormat::test_recognizes_known_extensions[data.csv-csv] PASSED                [ 64%]
+tests/unit/test_loader.py::TestSniffFormat::test_recognizes_known_extensions[data.CSV-csv] PASSED                [ 65%]
+tests/unit/test_loader.py::TestSniffFormat::test_recognizes_known_extensions[data.xlsx-excel] PASSED             [ 65%]
+tests/unit/test_loader.py::TestSniffFormat::test_recognizes_known_extensions[data.xls-excel] PASSED              [ 66%]
+tests/unit/test_loader.py::TestSniffFormat::test_recognizes_known_extensions[data.json-json] PASSED              [ 67%]
+tests/unit/test_loader.py::TestSniffFormat::test_recognizes_known_extensions[data.parquet-parquet] PASSED        [ 68%]
+tests/unit/test_loader.py::TestSniffFormat::test_unknown_extension_raises PASSED                                 [ 68%]
+tests/unit/test_loader.py::TestSniffFormat::test_error_message_lists_supported_extensions PASSED                 [ 69%]
+tests/unit/test_loader.py::TestLoadFile::test_loads_csv_through_a_fake_backend PASSED                            [ 70%]
+tests/unit/test_loader.py::TestLoadFile::test_unimplemented_recognized_format_raises_unsupported_format_error PASSED [ 71%]
+tests/unit/test_loader.py::TestLoadFile::test_unrecognized_extension_raises_before_any_load_attempt PASSED       [ 71%]
+tests/unit/test_logging_config.py::TestBuildDictConfig::test_console_only_when_no_log_file PASSED                [ 72%]
+tests/unit/test_logging_config.py::TestBuildDictConfig::test_adds_file_handler_when_log_file_set PASSED          [ 73%]
+tests/unit/test_logging_config.py::TestBuildDictConfig::test_level_propagates_to_handlers_and_logger PASSED      [ 74%]
+tests/unit/test_logging_config.py::TestBuildDictConfig::test_logger_does_not_propagate_to_root PASSED            [ 74%]
+tests/unit/test_logging_config.py::TestConfigureLogging::test_creates_log_file_parent_directory PASSED           [ 75%]
+tests/unit/test_logging_config.py::TestConfigureLogging::test_writes_to_configured_log_file PASSED               [ 76%]
+tests/unit/test_logging_config.py::TestGetLogger::test_root_logger_name PASSED                                   [ 77%]
+tests/unit/test_logging_config.py::TestGetLogger::test_sub_logger_name PASSED                                    [ 77%]
+tests/unit/test_logging_config.py::TestGetLogger::test_sub_loggers_are_children_of_root PASSED                   [ 78%]
+tests/unit/test_pandas_backend.py::TestPandasBackendSatisfiesProtocols::test_backend_satisfies_data_backend_protocol PASSED [ 79%]
+tests/unit/test_pandas_backend.py::TestPandasBackendSatisfiesProtocols::test_handle_satisfies_data_handle_protocol PASSED [ 80%]
+tests/unit/test_pandas_backend.py::TestPandasBackendLoad::test_basic_table PASSED                                [ 80%]
+tests/unit/test_pandas_backend.py::TestPandasBackendLoad::test_zero_row_table PASSED                             [ 81%]
+tests/unit/test_pandas_backend.py::TestPandasBackendLoad::test_zero_column_nonzero_row_table PASSED              [ 82%]
+tests/unit/test_pandas_backend.py::TestPandasBackendLoad::test_values_with_none_are_preserved PASSED             [ 82%]
+tests/unit/test_pandas_backend.py::TestPandasBackendLoad::test_unknown_column_raises PASSED                      [ 83%]
+tests/unit/test_pandas_backend.py::TestPandasBackendLoad::test_to_records PASSED                                 [ 84%]
+tests/unit/test_pandas_backend.py::TestDenormalizeMissing::test_none_passes_through_as_none PASSED               [ 85%]
+tests/unit/test_pandas_backend.py::TestDenormalizeMissing::test_float_nan_becomes_none PASSED                    [ 85%]
+tests/unit/test_pandas_backend.py::TestDenormalizeMissing::test_ordinary_string_passes_through_unchanged PASSED  [ 86%]
+tests/unit/test_pandas_backend.py::TestDenormalizeMissing::test_ordinary_number_passes_through_unchanged PASSED  [ 87%]
+tests/unit/test_pandas_backend.py::TestDenormalizeMissing::test_column_names_are_strings PASSED                  [ 88%]
+tests/unit/test_plugin_registry.py::TestManualRegistration::test_register_and_get PASSED                         [ 88%]
+tests/unit/test_plugin_registry.py::TestManualRegistration::test_get_missing_raises_plugin_not_found_error PASSED [ 89%]
+tests/unit/test_plugin_registry.py::TestManualRegistration::test_duplicate_registration_without_overwrite_raises PASSED [ 90%]
+tests/unit/test_plugin_registry.py::TestManualRegistration::test_duplicate_registration_with_overwrite_replaces PASSED [ 91%]
+tests/unit/test_plugin_registry.py::TestManualRegistration::test_names_returns_sorted_registered_names PASSED    [ 91%]
+tests/unit/test_plugin_registry.py::TestManualRegistration::test_contains_and_len PASSED                         [ 92%]
+tests/unit/test_plugin_registry.py::TestEntryPointDiscovery::test_discover_entry_points PASSED                   [ 93%]
+tests/unit/test_plugin_registry.py::TestEntryPointDiscovery::test_discover_entry_points_overwrites_existing PASSED [ 94%]
+tests/unit/test_plugin_registry.py::TestEntryPointDiscovery::test_discover_entry_points_empty_group_returns_empty_list PASSED [ 94%]
+tests/unit/test_types.py::TestQuestionType::test_values_are_lowercase_strings PASSED                             [ 95%]
+tests/unit/test_types.py::TestQuestionType::test_parses_from_raw_string_like_yaml_would_produce PASSED           [ 96%]
+tests/unit/test_types.py::TestQuestionType::test_invalid_value_raises_value_error PASSED                         [ 97%]
+tests/unit/test_types.py::TestQuestionType::test_all_expected_members_present PASSED                             [ 97%]
+tests/unit/test_types.py::TestDataType::test_all_expected_members_present PASSED                                 [ 98%]
+tests/unit/test_types.py::TestSeverity::test_all_expected_members_present PASSED                                 [ 99%]
+tests/unit/test_types.py::TestSeverity::test_members_are_distinct PASSED                                         [100%]
+
+=========================================== 134 passed, 1 skipped in 9.12s ============================================
+
+D:\Insightengine>mypy src/insightengine --strict
+Success: no issues found in 15 source files
+
+D:\Insightengine>git add .
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'pyproject.toml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/core/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/core/codebook.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/core/config.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/core/exceptions.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/core/logging_config.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/core/types.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/plugins/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/plugins/registry.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/unit/test_codebook.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/unit/test_config.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/unit/test_exceptions.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/unit/test_logging_config.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/unit/test_plugin_registry.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/unit/test_types.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/data/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/data/backends/__init__.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/data/backends/pandas_backend.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/data/base.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/data/csv_loader.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/insightengine/data/loader.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/unit/test_csv_loader.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/unit/test_data_base.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/unit/test_loader.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/unit/test_pandas_backend.py', LF will be replaced by CRLF the next time Git touches it
+
+D:\Insightengine>git commit -m "Phase 3: Data Engine"
+[main 8c91000] Phase 3: Data Engine
+ 18 files changed, 1206 insertions(+), 10 deletions(-)
+ create mode 100644 Local_Logs/CMD log 3.txt
+ create mode 100644 Local_Logs/CMD log 4.txt
+ create mode 100644 Local_Logs/New Microsoft Word Document.docx
+ create mode 100644 Local_Logs/New Text Document.txt
+ create mode 100644 Local_Logs/~$w Microsoft Word Document.docx
+ create mode 100644 src/insightengine/data/__init__.py
+ create mode 100644 src/insightengine/data/backends/__init__.py
+ create mode 100644 src/insightengine/data/backends/pandas_backend.py
+ create mode 100644 src/insightengine/data/base.py
+ create mode 100644 src/insightengine/data/csv_loader.py
+ create mode 100644 src/insightengine/data/loader.py
+ create mode 100644 tests/unit/test_csv_loader.py
+ create mode 100644 tests/unit/test_data_base.py
+ create mode 100644 tests/unit/test_loader.py
+ create mode 100644 tests/unit/test_pandas_backend.py
+
+D:\Insightengine>git push
+Enumerating objects: 38, done.
+Counting objects: 100% (38/38), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (27/27), done.
+Writing objects: 100% (28/28), 33.23 KiB | 472.00 KiB/s, done.
+Total 28 (delta 5), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (5/5), completed with 5 local objects.
+To https://github.com/vinayakpawar94/InsightEngine.git
+   083dc7b..8c91000  main -> main
+
+D:\Insightengine>git tag v0.3.0-phase3 && git push origin v0.3.0-phase3
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/vinayakpawar94/InsightEngine.git
+ * [new tag]         v0.3.0-phase3 -> v0.3.0-phase3
