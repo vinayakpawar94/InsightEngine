@@ -14,9 +14,10 @@ components.
 
 ## Status
 
-**Phases 1–5 complete** (Foundation, Core Domain Models, Data Engine —
-pandas backend only, Metadata Engine — native YAML only, Rule Engine).
-See the project's implementation roadmap for what's built and what's next.
+**Phases 1–6 complete** (Foundation, Core Domain Models, Data Engine —
+pandas backend only, Metadata Engine — native YAML only, Rule Engine,
+Validation Execution). See the project's implementation roadmap for
+what's built and what's next.
 
 ## Requirements
 
@@ -54,6 +55,11 @@ src/insightengine/
 ├── rules/                # Rule Engine
 │   ├── evaluator.py         # restricted expression evaluator — security-critical, see its docstring
 │   └── dsl.py                 # Rule dataclasses + YAML rule parser (no execution against data yet)
+├── validation/            # Validation Execution — wires Rule Engine + Codebook to real data
+│   ├── context.py            # ValidationContext (Codebook + DataHandle)
+│   ├── results.py              # ValidationResult
+│   ├── collector.py             # ErrorCollector
+│   └── executor.py                # validate() — see its docstring for RankRule deferral, multi-response convention
 └── plugins/            # generic entry_points-based plugin registry
 tests/unit/              # unit tests, one file per source module
 ```
