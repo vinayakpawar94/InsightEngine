@@ -14,9 +14,9 @@ components.
 
 ## Status
 
-**Phases 1–4 complete** (Foundation, Core Domain Models, Data Engine —
-pandas backend only, Metadata Engine — native YAML only). See the
-project's implementation roadmap for what's built and what's next.
+**Phases 1–5 complete** (Foundation, Core Domain Models, Data Engine —
+pandas backend only, Metadata Engine — native YAML only, Rule Engine).
+See the project's implementation roadmap for what's built and what's next.
 
 ## Requirements
 
@@ -51,6 +51,9 @@ src/insightengine/
 │   ├── validators.py        # authoring-quality checks beyond Codebook's own invariants
 │   └── parsers/
 │       └── yaml_native.py     # native YAML <-> Codebook, the only parser so far
+├── rules/                # Rule Engine
+│   ├── evaluator.py         # restricted expression evaluator — security-critical, see its docstring
+│   └── dsl.py                 # Rule dataclasses + YAML rule parser (no execution against data yet)
 └── plugins/            # generic entry_points-based plugin registry
 tests/unit/              # unit tests, one file per source module
 ```

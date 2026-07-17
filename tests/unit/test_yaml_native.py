@@ -5,7 +5,6 @@ from __future__ import annotations
 from pathlib import Path
 
 import pytest
-import re
 
 from insightengine.core.codebook import (
     DerivedVariable,
@@ -598,9 +597,10 @@ class TestLoadFromFile:
             load(tmp_path / "does_not_exist.yaml")
 
     def test_error_message_includes_file_path(self, tmp_path: Path) -> None:
+        import re
+
         path = tmp_path / "bad.yaml"
         path.write_text("questions: {}\n", encoding="utf-8")
-        #with pytest.raises(MetadataParseError, match=str(path)):
         with pytest.raises(MetadataParseError, match=re.escape(str(path))):
             load(path)
 

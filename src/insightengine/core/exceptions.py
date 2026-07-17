@@ -114,7 +114,34 @@ class UnsafeExpressionError(RuleEngineError):
     restricted evaluator refuses to execute (attribute access, calls to
     non-whitelisted functions, imports, etc.). This is a security
     boundary, not a convenience check — see Phase 5's acceptance criteria
-    in the implementation roadmap.
+    in the implementation roadmap. This is a **static** check: it fires
+    while validating an expression's parsed structure, before any
+    evaluation against real data is attempted. Compare
+    :class:`RuleEvaluationError`, which fires *during* evaluation of an
+    already-validated, safe expression.
+    """
+
+
+class RuleEvaluationError(RuleEngineError):
+    """Raised when a ``when:`` expression is syntactically valid and uses
+    only whitelisted constructs (i.e. it already passed the
+    :class:`UnsafeExpressionError` check), but evaluating it against
+    actual variable values fails for a data/type reason — arithmetic on a
+    non-numeric value, division by zero, comparing incompatible types.
+    Distinct from :class:`UnsafeExpressionError`: this is a runtime data
+    problem, not a security/safety problem. (Phase 5)
+    """
+
+
+class InvalidRuleDefinitionError(RuleEngineError):
+    """Raised when a single rule (one
+    :class:`~insightengine.rules.dsl.Rule` instance) is structurally
+    invalid on its own terms — e.g. a ``SumEqualsRule`` with fewer than
+    two variables, or a ``RankRule`` with an empty variable list. Mirrors
+    :class:`~insightengine.core.exceptions.InvalidQuestionDefinitionError`'s
+    role for :class:`~insightengine.core.codebook.Question`: a single
+    object's own internal validity, not a collection-level property.
+    (Phase 5)
     """
 
 
