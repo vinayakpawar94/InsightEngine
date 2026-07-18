@@ -161,6 +161,13 @@ class ExecutionError(InsightEngineError):
     """Base class for errors from the Execution Pipeline. (Phase 8)"""
 
 
+class ManifestError(ExecutionError):
+    """Raised when a run manifest cannot be read, is malformed, or a
+    resume was requested against a run directory with no manifest at
+    all. (Phase 8)
+    """
+
+
 class CleaningError(InsightEngineError):
     """Base class for errors from the Cleaning Engine. (Phase 7)"""
 

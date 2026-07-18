@@ -14,10 +14,10 @@ components.
 
 ## Status
 
-**Phases 1–7 complete** (Foundation, Core Domain Models, Data Engine —
+**Phases 1–8 complete** (Foundation, Core Domain Models, Data Engine —
 pandas backend only, Metadata Engine — native YAML only, Rule Engine,
-Validation Execution, Cleaning Engine). See the project's implementation
-roadmap for what's built and what's next.
+Validation Execution, Cleaning Engine, Execution Pipeline). See the
+project's implementation roadmap for what's built and what's next.
 
 ## Requirements
 
@@ -66,6 +66,11 @@ src/insightengine/
 │   ├── multi_expansion.py       # delimited-string / binary-indicator -> canonical selection collection
 │   ├── recode.py                  # single-value category recoding
 │   └── derived.py                   # derived-variable computation, dependency-ordered
+├── execution/              # Execution Pipeline — end-to-end orchestration with resumability
+│   ├── manifest.py           # Stage/Manifest model, atomic JSON writes
+│   ├── persistence.py          # RawTable / ValidationResult JSON persistence
+│   ├── hooks.py                  # on_start/on_case/on_end — see its docstring for on_case's real scope
+│   └── orchestrator.py             # Orchestrator — the top-level run() entry point
 └── plugins/            # generic entry_points-based plugin registry
 tests/unit/              # unit tests, one file per source module
 ```
