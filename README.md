@@ -14,10 +14,10 @@ components.
 
 ## Status
 
-**Phases 1–6 complete** (Foundation, Core Domain Models, Data Engine —
+**Phases 1–7 complete** (Foundation, Core Domain Models, Data Engine —
 pandas backend only, Metadata Engine — native YAML only, Rule Engine,
-Validation Execution). See the project's implementation roadmap for
-what's built and what's next.
+Validation Execution, Cleaning Engine). See the project's implementation
+roadmap for what's built and what's next.
 
 ## Requirements
 
@@ -60,6 +60,12 @@ src/insightengine/
 │   ├── results.py              # ValidationResult
 │   ├── collector.py             # ErrorCollector
 │   └── executor.py                # validate() — see its docstring for RankRule deferral, multi-response convention
+├── cleaning/              # Cleaning Engine — transformations over RawTable
+│   ├── transformer.py       # Transformer ABC, TransformerPipeline, DataHandle bridge
+│   ├── grid_expansion.py      # grid row column completion
+│   ├── multi_expansion.py       # delimited-string / binary-indicator -> canonical selection collection
+│   ├── recode.py                  # single-value category recoding
+│   └── derived.py                   # derived-variable computation, dependency-ordered
 └── plugins/            # generic entry_points-based plugin registry
 tests/unit/              # unit tests, one file per source module
 ```

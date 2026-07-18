@@ -159,3 +159,16 @@ class DuplicatePluginError(PluginError):
 
 class ExecutionError(InsightEngineError):
     """Base class for errors from the Execution Pipeline. (Phase 8)"""
+
+
+class CleaningError(InsightEngineError):
+    """Base class for errors from the Cleaning Engine. (Phase 7)"""
+
+
+class TransformationError(CleaningError):
+    """Raised when a :class:`~insightengine.cleaning.transformer.Transformer`
+    cannot apply itself to the data it was given — a malformed
+    multi-response indicator value, a recode referencing an unknown
+    variable, a derived variable's expression failing against a specific
+    row's actual data, etc. (Phase 7)
+    """
