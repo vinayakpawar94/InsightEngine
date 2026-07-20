@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "insightengine-dummy-plugin"
+version = "0.1.0"
+description = "A genuinely out-of-tree test plugin for insightengine, used only to prove entry_points discovery works end-to-end. Not part of insightengine itself."
+requires-python = ">=3.9"
+dependencies = []
+
+[project.entry-points."insightengine.metadata_parsers"]
+dummy = "insightengine_dummy_plugin:dummy_metadata_parser"
+
+[project.entry-points."insightengine.report_generators"]
+dummy = "insightengine_dummy_plugin:dummy_report_generator"
+
+[tool.setuptools.packages.find]
+include = ["insightengine_dummy_plugin*"]
