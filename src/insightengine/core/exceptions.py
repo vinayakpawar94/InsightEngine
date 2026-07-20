@@ -179,3 +179,19 @@ class TransformationError(CleaningError):
     variable, a derived variable's expression failing against a specific
     row's actual data, etc. (Phase 7)
     """
+
+
+class ReportingError(InsightEngineError):
+    """Base class for errors from the Reporting Engine. (Phase 9)"""
+
+
+class InconsistentRuleSeverityError(ReportingError):
+    """Raised when building a report summary finds two
+    :class:`~insightengine.validation.results.ValidationResult` entries
+    sharing a ``rule_id`` but disagreeing on severity — which should
+    never happen within one validation run (every result for a given
+    rule id comes from the same :class:`~insightengine.rules.dsl.Rule`
+    object, with one fixed severity), so treating it as a hard error
+    here surfaces a real bug upstream rather than silently picking one
+    severity to report. (Phase 9)
+    """
