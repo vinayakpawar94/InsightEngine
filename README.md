@@ -14,32 +14,46 @@ components.
 
 ## Status
 
-**Phases 1–11 complete** (Foundation, Core Domain Models, Data Engine —
+**Phases 1–12 complete** (Foundation, Core Domain Models, Data Engine —
 pandas backend only, Metadata Engine — native YAML only, Rule Engine,
 Validation Execution, Cleaning Engine, Execution Pipeline, Reporting
-Engine, Plugin System hardening, CLI). See the project's implementation
-roadmap for what's built and what's next.
+Engine, Plugin System hardening, CLI, Legacy migration bridge). See the
+project's implementation roadmap for what's built and what's next.
 
 **Known, explicitly deferred (not forgotten):** `RankRule` execution
-has been deferred three times now (Phases 6, 8, 9) without a decision.
-Rule types and cleaning transformers are not plugin-discoverable (Phase
-10). **A real architectural gap surfaced by Phase 11's integration
-testing:** there is no type-coercion step anywhere in the pipeline — CSV
-values are always strings (a deliberate Phase 3 decision), so a
-`NumericQuestion`/numeric-comparison rule against CSV-sourced data will
-always produce either a domain-check error or a `RuleEvaluationError`.
-This isn't a bug in any one phase; it's a real, currently-unaddressed
-gap between the Data Engine and the Metadata/Rule Engines worth a
-deliberate decision (likely a Cleaning Engine transformer) rather than
-continuing to work around it project-by-project.
+has been deferred through four phases now (6, 8, 9, 11) without a
+decision. Rule types and cleaning transformers are still not
+plugin-discoverable (Phase 10). The numeric-type-coercion gap flagged at
+the end of Phase 11 (CSV data is always strings; nothing anywhere
+coerces it) remains unaddressed.
 
-**A note on this phase's own history:** a sandbox environment/filesystem
-reset occurred mid-Phase-11, wiping all installed packages and every
-project file except the one being actively written at that moment.
-Recovered by restoring the full Phases 1–10 project from the
-Phase 10 delivery zip (already handed off) rather than reconstructing
-by hand — verified byte-for-byte equivalent to the pre-reset state via
-the full test suite before Phase 11 work resumed.
+**Phase 12's verification status — read this before trusting the
+migration bridge with anything real:**
+- `migration/sav_legacy.py`'s variable/value-label import is genuinely
+  tested against real `.sav` files (written and read back with
+  `pyreadstat`). This surfaced two real bugs, both fixed: pyreadstat
+  returns value-label keys as `float`, not `int`; and pyreadstat sets an
+  explicit `None` (not a missing key) for unlabeled variables, which
+  broke a naive `dict.get(name, name)` fallback.
+- **MRSET (multiple-response set) handling is NOT verified against a
+  real Dimensions-produced file, and cannot be in this environment** —
+  `pyreadstat.write_sav` has no parameter for writing MRSETs at all, so
+  no synthetic round-trip test is possible. It's implemented strictly
+  against `pyreadstat`'s own documented `MRSet` TypedDict, tested only
+  via a monkeypatched simulation of that shape.
+- **A real, unresolved integration gap found while building this:** a
+  real `.sav` file's MRSET subvariable names are arbitrary (e.g. `Q8A`,
+  `Q8B`), not guaranteed to match the `"{id}_{code}"` convention Phase
+  7's `MultiResponseExpansionTransformer` expects. This module builds
+  correct *metadata*; wiring the *data* columns through cleaning is not
+  solved here.
+- `migration/legacy_log.py`'s ErrorLog/QAout2 parser is grounded in real
+  evidence — the actual production `_QAedit.dms` template reviewed
+  earlier in this project, not a guessed format.
+- `migration/shadow_run.py`'s comparator is deliberately scoped to
+  aggregate (total/key-overlap) comparison only — there is no shared
+  case identifier between legacy (respondent serial) and new-pipeline
+  (physical row index) results to support case-level reconciliation.
 
 ## Requirements
 
@@ -60,6 +74,13 @@ the full test suite before Phase 11 work resumed.
   `pip install`/`uninstall` of a local test-only package as part of the
   test run (Phase 10) — no network access required, but this one test
   file takes noticeably longer (~20s) than the rest of the suite combined.
+- A sandbox environment/filesystem reset occurred mid-Phase-11, wiping
+  all installed packages and every project file except the one being
+  actively written at that moment. Recovered by restoring the full
+  Phases 1–10 project from the already-delivered Phase 10 zip rather
+  than reconstructing by hand — verified via the full test suite before
+  work resumed. Mentioned here in case anything looks slightly
+  out-of-sequence in file timestamps.
 
 ## Development setup
 
@@ -130,6 +151,10 @@ src/insightengine/
 │   └── excel_report.py                   # two sheets: Summary, Details
 ├── cli/                     # survey init/validate/clean/export/report
 │   └── main.py                 # the typer app — see its module docstring for scope decisions
+├── migration/                 # Legacy Dimensions migration bridge — see Status above for verification caveats
+│   ├── sav_legacy.py            # .sav -> Codebook via pyreadstat
+│   ├── legacy_log.py              # ErrorLog/QAout2 parsing, grounded in real production evidence
+│   └── shadow_run.py                # aggregate-only legacy-vs-new comparison
 └── plugins/            # generic entry_points-based plugin registry primitive (Phase 1)
 tests/
 ├── unit/                  # unit tests, one file per source module
